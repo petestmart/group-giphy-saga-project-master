@@ -15,7 +15,7 @@ const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
     yield takeEvery('SEARCH_IMAGES', getImages)
     yield takeEvery('SELECT_FAVORITE', favoriteImage)
-    yield takeEvery('SELECT_CATEGORY', )
+    yield takeEvery('SELECT_CATEGORY', putImage)
 }
 
 // GET SAGA to get from 
@@ -46,6 +46,8 @@ function* putImage(action) {
         const putGIF = yield axios.put(`api/favorite/?id=${action.payload}`);
         console.log('in putImage', putGIF)
         yield put({ type: 'SET_IMAGES'})
+    } catch (error) {
+        console.log(error)
     }
 }
 
