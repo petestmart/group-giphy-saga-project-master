@@ -3,7 +3,11 @@ import React, {Component} from 'react';
 class Favorites extends Component {
     render(){
         return(
-            <p>favorite list goes here</p>
+            <div>
+                <h2>FAVORITES</h2>
+                <FavoritesList />
+            </div>
+
         )
     }
 }
