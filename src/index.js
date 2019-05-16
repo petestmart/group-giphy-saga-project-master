@@ -75,4 +75,5 @@ const storeInstance = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('react-root'));
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
+     document.getElementById('react-root'));
