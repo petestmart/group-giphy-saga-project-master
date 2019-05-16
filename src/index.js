@@ -22,7 +22,7 @@ function* rootSaga() {
 
 function* getImages(action) {
     try {
-        const imageResponse = yield axios.get('/api/category')
+        const imageResponse = yield axios.get('/api/giphy')
         console.log(imageResponse);
         yield put({ type: 'SET_IMAGES', payload: imageResponse })
     } catch (error) {
