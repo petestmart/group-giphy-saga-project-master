@@ -18,7 +18,7 @@ function* rootSaga() {
     yield takeEvery('SELECT_CATEGORY')
 }
 
-// 
+// GET Function to get from 
 function* getImages(action) {
     try {
         const imageResponse = yield axios.get('/api/category')
