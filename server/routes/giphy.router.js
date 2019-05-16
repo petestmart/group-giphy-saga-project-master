@@ -1,5 +1,4 @@
 // Router to giphy api
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
