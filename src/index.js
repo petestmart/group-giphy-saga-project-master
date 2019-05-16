@@ -11,13 +11,14 @@ import axios from 'axios'
 
 const sagaMiddleware = createSagaMiddleware();
 
+// Watcher
 function* rootSaga() {
     yield takeEvery('SEARCH_IMAGES', getImages)
     yield takeEvery('SELECT_FAVORITE', favoriteImage)
     yield takeEvery('SELECT_CATEGORY')
 }
 
-
+// GET Function to get from 
 function* getImages(action) {
     try {
         const imageResponse = yield axios.get('/api/category')
@@ -27,6 +28,7 @@ function* getImages(action) {
         console.log(error)
     }
 }
+
 
 function* favoriteImage(action) {
     try {
@@ -38,6 +40,7 @@ function* favoriteImage(action) {
     }
 }
 
+// Reducer: GET
 const pulledImages = (state = [], action) => {
     if (action.type === 'SET_IMAGES') {
         return [...state, action.payload]
@@ -45,6 +48,7 @@ const pulledImages = (state = [], action) => {
     return state;
 }; 
 
+// Reducer: Favorites
 const favoriteImages = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
         return [...state, action.payload]
@@ -53,7 +57,7 @@ const favoriteImages = (state = [], action) => {
 }
 
 
-
+// Store
 const storeInstance = createStore(
     combineReducers({
         pulledImages,
