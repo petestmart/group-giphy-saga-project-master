@@ -15,14 +15,14 @@ class Search extends Component {
   }
 
   handleClick = () => {
-      this.props.dispatch({type:'SEARCH_IMAGES', payload:this.state.keyword});
+      this.props.dispatch({type:'SEARCH_IMAGES', payload: this.state.keyword});
   } 
 
     render() {
         return (
             <div>
                 <h2>SEARCH</h2>
-                <input type="text" placeholder="KEYWORD" onChange={this.handleChange} />
+                <input type="text" placeholder="keyword" onChange={this.handleChange} />
                 <button onClick={this.handleClick}>SEARCH</button>
                 <SearchList />
             </div>
@@ -30,9 +30,4 @@ class Search extends Component {
     }
 }
 
-const mapRedux = reduxState => {
-    return {images: reduxState.pulledImages}
-}
-
-
-export default connect(mapRedux)(Search);
+export default connect()(Search);
