@@ -15,10 +15,10 @@ const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
     yield takeEvery('SEARCH_IMAGES', getImages)
     yield takeEvery('SELECT_FAVORITE', favoriteImage)
-    yield takeEvery('SELECT_CATEGORY')
+    yield takeEvery('SELECT_CATEGORY', )
 }
 
-// GET Function to get from 
+// GET SAGA to get from 
 function* getImages(action) {
     try {
         const imageResponse = yield axios.get('/api/category')
@@ -29,7 +29,7 @@ function* getImages(action) {
     }
 }
 
-
+// Favorite SAGA
 function* favoriteImage(action) {
     try {
         const favoriteResponse = yield axios.post('/api/favorite')
@@ -37,6 +37,15 @@ function* favoriteImage(action) {
         yield put({ type: 'SET_FAVORITE' })
     } catch (error) {
         console.log(error)
+    }
+}
+
+// PUT SAGA
+function* putImage(action) {
+    try {
+        const putGIF = yield axios.put(`api/favorite/?id=${action.payload}`);
+        console.log('in putImage', putGIF)
+        yield put({ type: 'SET_IMAGES'})
     }
 }
 
