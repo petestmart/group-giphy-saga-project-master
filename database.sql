@@ -10,10 +10,10 @@ CREATE TABLE "category" (
 );
 
 -- Image Favorites and Urls
-CREATE TABLE "images" (
+CREATE TABLE "images"(
     "id" SERIAL PRIMARY KEY,
-    "url",
-    "category"
+    "url" VARCHAR (250) NOT NULL,
+    "category_id" INT
 )
 
 -- Default categories. You may change them :)
