@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FavoritesList from '../FavoritesList/FavoritesList'
 
 class Favorites extends Component {
     render(){
