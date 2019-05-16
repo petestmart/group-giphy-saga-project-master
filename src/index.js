@@ -52,7 +52,7 @@ function* putImage(action) {
 
 const pulledImages = (state = [], action) => {
     if (action.type === 'SET_IMAGES') {
-        return [...state, action.payload]
+        return [action.payload]
     }
     return state;
 }; 
