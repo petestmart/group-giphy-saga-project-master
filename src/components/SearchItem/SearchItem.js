@@ -10,7 +10,7 @@ class SearchItem extends Component {
     render() {
         return (
             <div>
-                <img src={this.props.image.image_url} alt="image" />
+                <img src={this.props.image.image_url} alt={this.props.image.id} />
                 <button onClick={this.handleClick}>FAVORITE</button>
             </div>
         )
