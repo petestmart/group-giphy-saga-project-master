@@ -9,11 +9,11 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects'
 import axios from 'axios'
 
-const sagaMiddleware = createSagaMiddleware(); 
+const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
-    yield takeEvery('SEARCH_IMAGES', getimages)
-    yield takeEvery('SELECT_FAVORIT', favoriteImage)
+    yield takeEvery('SEARCH_IMAGES', getImages)
+    yield takeEvery('SELECT_FAVORITE', favoriteImage)
     yield takeEvery('SELECT_CATEGORY')
 }
 
@@ -21,9 +21,9 @@ function* rootSaga() {
 function* getImages(action) {
     try {
         const imageResponse = yield axios.get('/api/category')
-        console.log(imageResponse); 
-    yield put ({type: 'SET_IMAGES', payload: imageResponse})
-    } catch(error) {
+        console.log(imageResponse);
+        yield put({ type: 'SET_IMAGES', payload: imageResponse })
+    } catch (error) {
         console.log(error)
     }
 }
@@ -31,25 +31,33 @@ function* getImages(action) {
 function* favoriteImage(action) {
     try {
         const favoriteResponse = yield axios.post('/api/favorite')
-        console.log(favorityResponse); 
-    yield put ({type: 'SELECT_FAVORITE'})
-    } catch(error) {
+        console.log(favoriteResponse);
+        yield put({ type: 'SET_FAVORITE' })
+    } catch (error) {
         console.log(error)
     }
 }
 
-const pulledImages = (state = [], action)
+const pulledImages = (state = [], action) => {
+    if (action.type === 'SET_IMAGES') {
+        return [...state, action.payload]
+    }
+    return state;
+}; 
 
-const favoriteImages = (state = [], action)
+const favoriteImages = (state = [], action) => {
+    if (action.type === 'SET_FAVORITE') {
+        return [...state, action.payload]
+    }
+    return state;
+}
 
 
 
 const storeInstance = createStore(
     combineReducers({
-      pulledImages, 
-      favoriteImages
-
-
+        pulledImages,
+        favoriteImages
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -58,5 +66,5 @@ const storeInstance = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
