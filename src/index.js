@@ -13,20 +13,22 @@ const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
     yield takeEvery('SEARCH_IMAGES', getimages)
+    yield takeEvery('SELECT_FAVORIT', favoriteImage)
+    yield takeEvery('SELECT_CATEGORY')
 }
 
 
-function* getimages(action) {
+function* getImages(action) {
     try {
         const imageResponse = yield axios.get('/api/category')
         console.log(imageResponse); 
-    yield put ({type: 'SET_IMAGES'})
+    yield put ({type: 'SET_IMAGES', payload: imageResponse})
     } catch(error) {
         console.log(error)
     }
 }
 
-function* favoriteImages(action) {
+function* favoriteImage(action) {
     try {
         const favoriteResponse = yield axios.post('/api/favorite')
         console.log(favorityResponse); 
@@ -36,11 +38,18 @@ function* favoriteImages(action) {
     }
 }
 
+const pulledImages = (state = [], action)
+
+const favoriteImages = (state = [], action)
+
 
 
 const storeInstance = createStore(
     combineReducers({
-      
+      pulledImages, 
+      favoriteImages
+
+
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
