@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import SearchList from '../SearchList/SearchList';
 
 class Search extends Component {
 
@@ -24,6 +24,7 @@ class Search extends Component {
                 <h2>SEARCH</h2>
                 <input type="text" placeholder="KEYWORD" onChange={this.handleChange} />
                 <button onClick={this.handleClick}>SEARCH</button>
+                <SearchList />
             </div>
         )
     }
