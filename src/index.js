@@ -46,6 +46,8 @@ function* putImage(action) {
         const putGIF = yield axios.put(`api/favorite/?id=${action.payload}`);
         console.log('in putImage', putGIF)
         yield put({ type: 'SET_IMAGES'})
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -73,7 +75,7 @@ const storeInstance = createStore(
         favoriteImages
     }),
     // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(sagaMiddleware, logger)
 );
 
 
