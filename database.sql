@@ -9,6 +9,13 @@ CREATE TABLE "category" (
     "name" VARCHAR (100) NOT NULL
 );
 
+-- Image Favorites and Urls
+CREATE TABLE "images" (
+    "id" SERIAL PRIMARY KEY,
+    "url",
+    "category"
+)
+
 -- Default categories. You may change them :)
 INSERT INTO "category" ("name")
 VALUES ('funny'), ('vega'), ('cartoon'), ('nsfw'), ('meme');
