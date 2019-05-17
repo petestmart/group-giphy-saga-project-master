@@ -10,7 +10,7 @@ class FavoritesItem extends Component {
     render() {
         return (
             <div>
-                <img src={this.props.image.image_url} alt={this.props.image.id} />
+                <img src={this.props.image.url} alt={this.props.image.id} />
                 <select onChange={this.handleChange(this.value)}>
                     <option value="">Uncategorized</option>
                     <option value="funny">Funny</option>

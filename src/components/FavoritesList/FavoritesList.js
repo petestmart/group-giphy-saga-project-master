@@ -12,42 +12,42 @@ class FavoritesList extends Component {
                             if (image.category === '') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
                 <h3>Funny</h3>
                         {this.props.favorites.map(image => {
                             if (image.category === 'funny') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
                 <h3>Vega</h3>
                         {this.props.favorites.map(image => {
                             if (image.category === 'vega') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
                 <h3>Cartoon</h3>
                         {this.props.favorites.map(image => {
                             if (image.category === 'cartoon') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
                 <h3>NSFW</h3>
                         {this.props.favorites.map(image => {
                             if (image.category === 'nsfw') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
                 <h3>Meme</h3>
                         {this.props.favorites.map(image => {
                             if (image.category === 'meme') {
                                 return <FavoritesItem image={image} />
                             }
-                            return null;
+                            return <pre></pre>;
                         })}
             </div>
 
