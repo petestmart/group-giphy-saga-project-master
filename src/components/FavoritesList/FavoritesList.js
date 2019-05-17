@@ -9,42 +9,42 @@ class FavoritesList extends Component {
             <div>
                 <h3>Uncategorized</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === '') {
+                            if (image.category_id === null) {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;
                         })}
                 <h3>Funny</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === 'funny') {
+                            if (image.category_id === 'funny') {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;
                         })}
                 <h3>Vega</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === 'vega') {
+                            if (image.category_id === 'vega') {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;
                         })}
                 <h3>Cartoon</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === 'cartoon') {
+                            if (image.category_id === 'cartoon') {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;
                         })}
                 <h3>NSFW</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === 'nsfw') {
+                            if (image.category_id === 'nsfw') {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;
                         })}
                 <h3>Meme</h3>
                         {this.props.favorites.map(image => {
-                            if (image.category === 'meme') {
+                            if (image.category_id === 'meme') {
                                 return <FavoritesItem image={image} />
                             }
                             return <pre></pre>;

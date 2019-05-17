@@ -32,8 +32,8 @@ function* getImages(action) {
 // Favorite SAGA POST
 function* favoriteImage(action) {
     try {
-        const favoriteResponse = yield axios.post('/api/favorite', {url: action.payload})
-        console.log(favoriteResponse.data);
+        yield axios.post('/api/favorite', {url: action.payload})
+        const favoriteResponse = yield axios.get('/api/favorite')
         yield put({ type: 'SET_FAVORITE', payload: favoriteResponse.data })
     } catch (error) {
         console.log(error)
@@ -62,7 +62,7 @@ const pulledImages = (state = [], action) => {
 // Favorite Reducer
 const favoriteImages = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
-        return [...state, action.payload]
+        return action.payload
     }
     return state;
 }
