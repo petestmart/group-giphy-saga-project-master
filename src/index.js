@@ -11,34 +11,36 @@ import axios from 'axios'
 
 const sagaMiddleware = createSagaMiddleware();
 
+// Watcher
 function* rootSaga() {
     yield takeEvery('SEARCH_IMAGES', getImages)
     yield takeEvery('SELECT_FAVORITE', favoriteImage)
     yield takeEvery('SELECT_CATEGORY', putImage )
 }
 
-
-
-
+// GET SAGA
 function* getImages(action) {
     try {
         const imageResponse = yield axios.get(`/api/giphy?tag=${action.payload}`)
         console.log(imageResponse);
-        yield put({ type: 'SET_IMAGES', payload: imageResponse })
-    } catch (error) {
-        console.log(error)
-    }
-}
-function* favoriteImage(action) {
-    try {
-        const favoriteResponse = yield axios.post('/api/favorite')
-        console.log(favoriteResponse);
-        yield put({ type: 'SET_FAVORITE', favoriteResponse })
+        yield put({ type: 'SET_IMAGES', payload: imageResponse.data })
     } catch (error) {
         console.log(error)
     }
 }
 
+// Favorite SAGA POST
+function* favoriteImage(action) {
+    try {
+        const favoriteResponse = yield axios.post('/api/favorite', {url: action.payload})
+        console.log(favoriteResponse.data);
+        yield put({ type: 'SET_FAVORITE', payload: favoriteResponse.data })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// GET SAGA
 function* putImage(action) {
     try {
         const putGIF = yield axios.put(`api/favorite/?id=${action.payload}`);
@@ -49,14 +51,15 @@ function* putImage(action) {
     }
 }
 
-
+// GET Reducer
 const pulledImages = (state = [], action) => {
     if (action.type === 'SET_IMAGES') {
-        return [action.payload]
+        return action.payload
     }
     return state;
 }; 
 
+// Favorite Reducer
 const favoriteImages = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
         return [...state, action.payload]
@@ -64,7 +67,7 @@ const favoriteImages = (state = [], action) => {
     return state;
 }
 
-
+// Store
 const storeInstance = createStore(
     combineReducers({ 
         pulledImages,
