@@ -43,7 +43,7 @@ function* favoriteImage(action) {
 // GET SAGA
 function* putImage(action) {
     try {
-        const putGIF = yield axios.put(`api/favorite/?id=${action.payload}`);
+        const putGIF = yield axios.put(`api/favorite/?id=${action.payload.id}&category_id=${action.payload.category_id}`);
         console.log('in putImage', putGIF)
         yield put({ type: 'SET_IMAGES', payload: putGIF})
     } catch (error) {
